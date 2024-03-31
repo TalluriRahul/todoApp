@@ -1,0 +1,31 @@
+form{
+  background-color: rgb(110, 243, 238);
+  box-shadow: 3px 3px 4px black;
+  border-radius: 10px;
+  width: 300px;
+  padding: 20px;
+  margin: 40px auto;
+}
+
+.addtodo{
+  display: block;
+  margin: 30px auto;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: none;
+}
+#submit:hover{
+  background-color: rgb(222, 222, 222);
+}
+#submit:active{
+  background-color: rgb(146, 251, 146);
+}
+#todoContainer{
+  display: flex;
+}
+#todoContainer .todo{
+  margin:40px;
+}
+.markdone{
+  display: block;
+}

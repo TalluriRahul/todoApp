@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <form action="" method="">
+    <input id="addtodo" class="addtodo" type="text" placeholder="Add todo">
+    <input id="adddescription" class="addtodo" type="text" placeholder="About Todo">
+    <input id="submit" class="addtodo" onclick="changeP()" type="button" name="Add todo" value="Add Todo" placeholder="Add Todo">
+  </form>
+  <div id="todoContainer">
+
+  </div>
+  <script>
+   function markdone(element){
+    element.innerHTML="Done";
+    element.style.color="white";
+    element.style.backgroundColor="green";
+  }
+     function changeP(){
+      const todo=document.getElementById("addtodo").value;
+      const tododescription=document.getElementById("adddescription").value;
+      const maincontainer=document.getElementById("todoContainer");
+      var ele=document.createElement("div");
+      ele.setAttribute("class","todo")
+      
+      ele.innerHTML="<h3>"+todo+"</h3>"+"<p>"+tododescription+"</p>";
+      maincontainer.appendChild(ele);
+      ele1=document.createElement("button");
+      ele1.setAttribute("class","markdone")
+      ele1.setAttribute("id","")
+      ele1.setAttribute("onclick","markdone(this)")
+      ele1.innerHTML="Mark as Done";
+      ele.appendChild(ele1);
+}
+
+  </script>
+</body>
+</html>
