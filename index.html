@@ -7,13 +7,96 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <header>
+    <h1>Task Lister</h1>
+    <nav id="homenav">
+      <span class="homeoptions">All todos</span>
+      <span class="homeoptions">History</span>
+      <span class="homeoptions">Rewards</span>
+      <span class="homeoptions">Profile</span>
+
+    </nav>
+  </header>
   <form action="" method="">
     <input id="addtodo" class="addtodo" type="text" placeholder="Add todo">
     <input id="adddescription" class="addtodo" type="text" placeholder="About Todo">
+    <div class="addtodo" id="selectdate">
+      <select name="day" id="date">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+        <option value="6">6</option>
+        <option value="7">7</option>
+        <option value="8">8</option>
+        <option value="9">9</option>
+        <option value="10">10</option>
+        <option value="11">11</option>
+        <option value="12">12</option>
+        <option value="13">13</option>
+        <option value="14">14</option>
+        <option value="15">15</option>
+        <option value="16">16</option>
+        <option value="17">17</option>
+        <option value="18">18</option>
+        <option value="19">19</option>
+        <option value="20">20</option>
+        <option value="21">21</option>
+        <option value="22">22</option>
+        <option value="23">23</option>
+        <option value="24">24</option>
+        <option value="25">25</option>
+        <option value="26">26</option>
+        <option value="27">27</option>
+        <option value="28">28</option>
+        <option value="29">29</option>
+        <option value="30">30</option>
+        <option value="31">31</option>
+      </select>
+      <select name="month" id="month">
+        <option value="January">Jan</option>
+        <option value="February">Feb</option>
+        <option value="March">Mar</option>
+        <option value="April">Apr</option>
+        <option value="May">May</option>
+        <option value="June">Jun</option>
+        <option value="July">Jul</option>
+        <option value="August">Aug</option>
+        <option value="September">Sep</option>
+        <option value="October">Oct</option>
+        <option value="November">Nov</option>
+        <option value="December">Dec</option>
+  </select>
+  <select name="year" id="year">
+    <option value="2024">2024</option>
+    <option value="2025">2025</option>
+    <option value="2026">2026</option>
+    <option value="2027">2027</option>
+    <option value="2028">2028</option>
+    <option value="2029">2029</option>
+    <option value="2030">2030</option>
+    <option value="2031">2031</option>
+    <option value="2032">2032</option>
+    <option value="2033">2033</option>
+    <option value="2034">2034</option>
+    <option value="2035">2035</option>
+    <option value="2036">2036</option>
+    <option value="2037">2037</option>
+    <option value="2038">2038</option>
+    <option value="2039">2039</option>
+    <option value="2040">2040</option>
+    <option value="2041">2041</option>
+    <option value="2042">2042</option>
+    <option value="2043">2043</option>
+    <option value="2044">2044</option>
+  </select>
+    </div>
+
     <input id="submit" class="addtodo" onclick="changeP()" type="button" name="Add todo" value="Add Todo" placeholder="Add Todo">
   </form>
   <div id="todoContainer">
-
+    <h3>Todo List</h3>
   </div>
   <script>
    function markdone(element){
@@ -21,21 +104,43 @@
     element.style.color="white";
     element.style.backgroundColor="green";
   }
-     function changeP(){
+     async function changeP(){
       const todo=document.getElementById("addtodo").value;
       const tododescription=document.getElementById("adddescription").value;
       const maincontainer=document.getElementById("todoContainer");
-      var ele=document.createElement("div");
-      ele.setAttribute("class","todo")
+      const day=document.getElementById("date").value;
+      const month=document.getElementById("month").value;
+      const year=document.getElementById("year").value;
+      const date=day+"-"+month+"-"+year;
+      // const testresp=await fetch("http://localhost:3000/user/test");
+      // console.log(testresp);
+      // const ans=await testresp.text();
+      // console.log(ans);
+      // console.log(date);
+      const resp=await fetch("http://localhost:3000/user/addtodo", {method:"POST",headers:{
+        "title":todo,
+        "description":tododescription,
+        "date":date
+        
+      }})
+      const ans=await resp.json();
+      console.log(ans);
+
+
+      // var ele=document.createElement("div");
+      // ele.setAttribute("class","todo")
       
-      ele.innerHTML="<h3>"+todo+"</h3>"+"<p>"+tododescription+"</p>";
-      maincontainer.appendChild(ele);
-      ele1=document.createElement("button");
-      ele1.setAttribute("class","markdone")
-      ele1.setAttribute("id","")
-      ele1.setAttribute("onclick","markdone(this)")
-      ele1.innerHTML="Mark as Done";
-      ele.appendChild(ele1);
+      // ele.innerHTML="<h3>"+todo+"</h3>"+"<p>"+tododescription+"</p>";
+      // maincontainer.appendChild(ele);
+      // ele1=document.createElement("button");
+      // ele1.setAttribute("class","markdone")
+      // ele1.setAttribute("id","")
+      // ele1.setAttribute("onclick","markdone(this)")
+      // ele1.innerHTML="Mark as Done";
+      // ele.appendChild(ele1);
+      // ele2=document.createElement("div");
+      // ele2.innerHTML="<p>"+day+"-"+month+"-"+year+"</p>"
+      // ele.appendChild(ele2);
 }
 
   </script>
